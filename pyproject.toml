@@ -1,0 +1,22 @@
+[project]
+name = "gradio-assistant"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiohttp>=3.11.12",
+    "chromadb>=0.6.3",
+    "gradio>=5.17.1",
+    "langchain>=0.3.19",
+    "langchain-chroma>=0.2.2",
+    "langchain-community>=0.3.18",
+    "langchain-openai>=0.3.7",
+    "langgraph>=0.2.74",
+    "markdown>=3.7",
+    "python-magic>=0.4.27",
+    "python-magic-bin>=0.4.14",
+    "sentence-transformers>=3.4.1",
+    "trafilatura>=2.0.0",
+    "unstructured>=0.16.23",
+]
