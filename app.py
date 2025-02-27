@@ -15,7 +15,7 @@ from pydantic import BaseModel
 load_dotenv()
 
 # There are tools set here dependent on environment variables
-from graph import graph, model # noqa
+from gradio_assistant.graph import graph, model # noqa
 
 FOLLOWUP_QUESTION_NUMBER = 3
 TRIM_MESSAGE_LENGTH = 16  # Includes tool messages
