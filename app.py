@@ -81,7 +81,13 @@ async def chat_fn(user_input: str, history: dict, input_graph_state: dict, uuid:
                             waiting_output_seq.append("Downloading website text...")
                             yield "\n".join(waiting_output_seq), gr.skip(), gr.skip()
                         elif tool_name == "tavily_search_results_json":
-                            waiting_output_seq.append("Searching for relevant information...")
+                            waiting_output_seq.append("Searching the web for relevant information...")
+                            yield "\n".join(waiting_output_seq), gr.skip(), gr.skip()
+                        elif tool_name == "qa_query":
+                            waiting_output_seq.append("Searching for common questions and answers...")
+                            yield "\n".join(waiting_output_seq), gr.skip(), gr.skip()
+                        elif tool_name == "query_gradio_documentation":
+                            waiting_output_seq.append("Searching gradio documentation...")
                             yield "\n".join(waiting_output_seq), gr.skip(), gr.skip()
                         elif tool_name:
                             waiting_output_seq.append(f"Running {tool_name}...")
@@ -317,7 +323,6 @@ if __name__ == "__main__":
             for i in range(FOLLOWUP_QUESTION_NUMBER):
                 btn = gr.Button(f"Button {i+1}", visible=False, elem_classes="followup-question-button")
                 followup_question_buttons.append(btn)
-
 
         multimodal = False
         textbox_component = (
