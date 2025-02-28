@@ -18,8 +18,8 @@ load_dotenv()
 from gradio_assistant.graph import graph, model # noqa
 
 FOLLOWUP_QUESTION_NUMBER = 3
-TRIM_MESSAGE_LENGTH = 16  # Includes tool messages
-USER_INPUT_MAX_LENGTH = 10000  # Characters
+TRIM_MESSAGE_LENGTH = 20  # Includes tool messages
+USER_INPUT_MAX_LENGTH = 20000  # Characters
 
 # We need the same secret for data persistance
 # If you store sensitive data, you should store your secret in .env
@@ -242,9 +242,12 @@ function triggerChatButtonClick() {
   button.click();
 }"""
 
+theme = gr.themes.Default().set(
+)
+
 if __name__ == "__main__":
     logger.info("Starting the interface")
-    with gr.Blocks(title="Langgraph Template", fill_height=True, css=CSS) as app:
+    with gr.Blocks(title="Langgraph Template", fill_height=True, css=CSS, theme=theme) as app:
         current_uuid_state = gr.BrowserState(
             uuid4,
             storage_key="current_uuid_state",

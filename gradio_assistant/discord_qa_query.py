@@ -20,6 +20,7 @@ async def query_discord_qa(query):
     results = []
     for res, score in vector_documents:
         results.append([res.page_content])
-        print("----------------------------------------------------")
+        print("---------------discord------------------------------")
         print(f"* {res.page_content}: score={score}")
+        print("---------------dendord------------------------------")
     return results

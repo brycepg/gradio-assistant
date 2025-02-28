@@ -5,17 +5,11 @@ from langchain_core.documents import Document
 from langchain_chroma import Chroma
 
 from gradio_assistant.discord_qa_embeddings import COLLECTION_NAME, embeddings, CHUNK_OVERLAP, CHUNK_SIZE
+from gradio_assistant.utils import list_all_files
 
 PERSIST_DIRECTORY="chroma_db"
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP)
 
-
-def list_all_files(directory):
-    file_list = []
-    for root, _, files in os.walk(directory):
-        for file in files:
-            file_list.append(os.path.join(root, file))
-    return file_list
 
 def main():
     file_seq = list_all_files("data/gradio-questions")

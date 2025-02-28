@@ -2,8 +2,8 @@ from langchain_openai import OpenAIEmbeddings
 # from langchain_community.embeddings import SentenceTransformerEmbeddings
 
 CHUNK_SIZE = 2048
-CHUNK_OVERLAP = 128
-COLLECTION_PREFIX = "gradio-discord-qa"
+CHUNK_OVERLAP = 0
+COLLECTION_PREFIX = "stakoverflow-qa-2"
 # EMBEDDING_POSTFIX = "minilm"
 EMBEDDING_POSTFIX = "openai-large"
 # embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")

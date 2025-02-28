@@ -14,19 +14,19 @@ from langchain_community.tools import TavilySearchResults
 from pydantic import BaseModel, Field
 from trafilatura import extract
 
-from gradio_assistant.gradio_docs import query_documents
-from gradio_assistant.discord_qa_query import query_discord_qa
+from gradio_assistant.gradio_docs import query_gradio_documentation
+from gradio_assistant.qa_tool import qa_query
 
 logger = logging.getLogger(__name__)
 ASSISTANT_SYSTEM_PROMPT = """You are tasksed with helping a user with gradio, a python library for creating web-based UIs
 
 Use download_website_text to download the text from a website.
-Use query_documents to search for relevant information in the gradio documentation.
-Use query_discord_qa to search for common questions and answers in the gradio community.
+Use query_gradio_documentation to search for relevant information in the gradio documentation.
+Use qa_query to search for common questions and answers in the gradio community.
 """
 
-query_documents = tool(query_documents)
-query_discord_qa = tool(query_discord_qa)
+query_gradio_documentation = tool(query_gradio_documentation)
+qa_query = tool(qa_query)
 
 @tool
 async def download_website_text(url: str) -> str:
@@ -42,7 +42,7 @@ async def download_website_text(url: str) -> str:
         logger.error(f"Failed to download {url}: {str(e)}")
         return f"Error retrieving website content: {str(e)}"
 
-tools = [download_website_text, query_documents, query_discord_qa]
+tools = [download_website_text, query_gradio_documentation, qa_query]
 
 if os.environ.get("TAVILY_API_KEY"):
     tools.append(
