@@ -100,7 +100,9 @@ async def chat_fn(user_input: str, history: dict, input_graph_state: dict, uuid:
                     yield output, gr.skip(), False
         # Trigger for asking follow up questions
         # + store the graph state for next iteration
-        yield output, dict(final_state), True
+        yield output, dict(final_state), False
+        # There is a gradio library bug here with end_of_chat_response being True before the final output is updated
+        yield output, gr.skip(), True
     except Exception:
         logger.exception("Exception occurred")
         user_error_message = "There was an error processing your request. Please try again."
