@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import logging
 import logging.config
@@ -253,7 +253,7 @@ theme = gr.themes.Default().set(
 
 if __name__ == "__main__":
     logger.info("Starting the interface")
-    with gr.Blocks(title="Langgraph Template", fill_height=True, css=CSS, theme=theme) as app:
+    with gr.Blocks(title="Gradio Q&A Bot", fill_height=True, css=CSS, theme=theme) as app:
         current_uuid_state = gr.BrowserState(
             uuid4,
             storage_key="current_uuid_state",
@@ -288,6 +288,7 @@ if __name__ == "__main__":
         chatbot = gr.Chatbot(
             type="messages",
             scale=1,
+            placeholder="This is an experimental chatbot for Gradio questions and answers. Ask a question or type a message. Feel free to send feedback to bryce.paul.guinta@gmail.com",
         )
         tab_edit_uuid_state = gr.State(
             str()
