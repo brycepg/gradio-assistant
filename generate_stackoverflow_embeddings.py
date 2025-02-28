@@ -1,15 +1,20 @@
+import datetime
 import json
+import os
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 from langchain_chroma import Chroma
 from markdownify import markdownify as md
+from dotenv import load_dotenv
 
 from gradio_assistant.utils import list_all_files
 from gradio_assistant.stackoverflow_embeddings import COLLECTION_NAME, embeddings, CHUNK_OVERLAP, CHUNK_SIZE
 from gradio_assistant.url_result import UrlResult
 
-PERSIST_DIRECTORY = "chroma_db"
+load_dotenv()
+
+PERSIST_DIRECTORY = os.environ["CHROMADB_PERSIST_DIRECTORY"]
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP)
 directory = "data/stackoverflow"
 
@@ -32,8 +37,13 @@ def main():
     print(len(qa_seq))
     question_id_seq = set()
     qa_filtered = []
+    date_threshold = datetime.datetime(2024, 1, 1)
     for qa in qa_seq:
         if not qa["answers"]:
+            continue
+        unix_time = qa["last_activity_date"]
+        last_activity_datetime = datetime.datetime.utcfromtimestamp(unix_time)
+        if last_activity_datetime <= date_threshold:
             continue
         question_id = qa["question_id"]
         if question_id in question_id_seq:

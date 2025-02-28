@@ -3,7 +3,7 @@ from langchain_openai import OpenAIEmbeddings
 
 CHUNK_SIZE = 2048
 CHUNK_OVERLAP = 0
-COLLECTION_PREFIX = "stakoverflow-qa-2"
+COLLECTION_PREFIX = "stakoverflow-qa"
 # EMBEDDING_POSTFIX = "minilm"
 EMBEDDING_POSTFIX = "openai-large"
 # embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
