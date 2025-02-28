@@ -11,7 +11,7 @@ async def qa_query(query: str):
         query (str): The user query
     """
     print(f"Query: {query}")
-    discord_resuts, stackoverflow_results, github_results = asyncio.gather(
+    discord_resuts, stackoverflow_results, github_results = await asyncio.gather(
         query_discord_qa(query),
         query_stackoverflow(query),
         query_github_issues(query),
