@@ -63,10 +63,11 @@ def main():
                         help='Output JSON file name')
     parser.add_argument('--limit', type=int, default=None,
                         help='Limit number of questions to download')
+    parser.add_agument("--page", type=int, help="Page number to start downloading from")
     args = parser.parse_args()
 
     all_posts = []
-    page = 1
+    page = args.page
     has_more = True
 
     print(f"Downloading posts with tag: {args.tag}")
